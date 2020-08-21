@@ -4,9 +4,10 @@
 #
 # usage: 
 # create new branch: gbsync -n BRANCH_NAME
+# change branch: gbsync -c BRANCH_NAME
 # delete branch: gbsync -d BRANCH_NAME
 #
-# v: 0.2
+# v: 0.3
 # 2020 - Cristian Acuña
 # github: codigonet
 #####################################################
@@ -21,9 +22,9 @@ gbsync(){
       GBSYNC_OPTION="-n"
     fi
 
-    if [ "$GBSYNC_OPTION" != "-n" ] && [ "$GBSYNC_OPTION" != "-d" ]; then
+    if [ "$GBSYNC_OPTION" != "-n" ] && [ "$GBSYNC_OPTION" != "-c" ] && [ "$GBSYNC_OPTION" != "-d" ]; then
       echo "Incorrect option: $GBSYNC_OPTION"
-      echo "Use: -n for new branch or -d to delete branch"
+      echo "Use: -n for new branch, -c to change branch, -d to delete branch"
       return 1
     fi
   fi
@@ -32,6 +33,10 @@ gbsync(){
     if [ "$GBSYNC_OPTION" = "-n" ]; then
       echo "On path [$PWD] - creating branch [$GBSYNC_NAME]"
       git checkout -b $GBSYNC_NAME
+    fi
+    if [ "$GBSYNC_OPTION" = "-c" ]; then
+      echo "On path [$PWD] - changing branch [$GBSYNC_NAME]"
+      git checkout $GBSYNC_NAME
     fi
     if [ "$GBSYNC_OPTION" = "-d" ]; then
       echo "On path [$PWD] - back to master and deleting branch [$GBSYNC_NAME]"
