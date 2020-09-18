@@ -37,6 +37,7 @@ gbsync(){
     if [ "$GBSYNC_OPTION" = "-c" ]; then
       echo "On path [$PWD] - changing branch [$GBSYNC_NAME]"
       git checkout $GBSYNC_NAME
+      git pull
     fi
     if [ "$GBSYNC_OPTION" = "-d" ]; then
       echo "On path [$PWD] - back to master and deleting branch [$GBSYNC_NAME]"
