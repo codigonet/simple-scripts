@@ -1,13 +1,13 @@
 #####################################################
-# Description: Recursively synchronize git branches 
+# Description: Recursively synchronize git branches
 # on current Repo/Submodules folder
 #
-# usage: 
+# usage:
 # create new branch: gbsync -n BRANCH_NAME
 # change branch: gbsync -c BRANCH_NAME
 # delete branch: gbsync -d BRANCH_NAME
 #
-# v: 0.3
+# v: 0.4
 # 2020 - Cristian Acuña
 # github: codigonet
 #####################################################
@@ -37,6 +37,7 @@ gbsync(){
     if [ "$GBSYNC_OPTION" = "-c" ]; then
       echo "On path [$PWD] - changing branch [$GBSYNC_NAME]"
       git checkout $GBSYNC_NAME
+      git pull
     fi
     if [ "$GBSYNC_OPTION" = "-d" ]; then
       echo "On path [$PWD] - back to master and deleting branch [$GBSYNC_NAME]"
